@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101722">
+<meta name="description" content="내가 만든 프로젝트를 모아 보고 원하는 사이트를 바로 실행하는 공간">
+<title>web hub — My projects. One place.</title>
+<style>
+:root{color-scheme:dark;--bg:#101722;--card:#17263b;--line:#294363;--text:#f4f7ff;--muted:#9aacc8;--blue:#3b82f6;--purple:#8b5cf6;--grad:linear-gradient(110deg,var(--blue),var(--purple))}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 82% 5%,#3b82f61c,transparent 32rem),radial-gradient(ellipse at 95% 18%,#8b5cf61a,transparent 28rem),var(--bg);color:var(--text);font-family:Inter,Pretendard,"Noto Sans KR",system-ui,sans-serif;line-height:1.6}a{color:inherit}button,input{font:inherit}
+header{position:sticky;top:0;z-index:5;background:#0a1320d9;backdrop-filter:blur(16px);border-bottom:1px solid #263e5c}.nav{width:min(1180px,calc(100% - 36px));height:66px;margin:auto;display:flex;align-items:center;gap:28px}.brand{text-decoration:none;font-size:1.4rem;font-weight:850;letter-spacing:-.05em}.brand span{background:var(--grad);background-clip:text;-webkit-background-clip:text;color:transparent}.links{display:flex;gap:8px}.links a{padding:8px 12px;text-decoration:none;color:var(--muted);border-radius:9px;font-size:.9rem}.links a:hover{color:white;background:#3b82f61c}.spacer{flex:1}.search-shortcut{display:grid;place-items:center;width:41px;height:41px;background:#13233a;border:1px solid var(--line);border-radius:12px;cursor:pointer}.search-shortcut:hover{border-color:var(--blue)}svg{width:20px;height:20px}
+main{width:min(1060px,calc(100% - 36px));margin:auto}.hero{position:relative;padding:62px 0 30px;overflow:hidden}.hero:after{content:"";position:absolute;z-index:-1;width:320px;height:320px;right:-140px;top:-190px;border-radius:50%;background:radial-gradient(circle,#8b5cf65c,#3b82f617 48%,transparent 72%);filter:blur(8px)}.eyebrow{font-size:.75rem;font-weight:750;letter-spacing:.22em;text-transform:uppercase;color:#79b7ff}h1{font-size:clamp(2.7rem,6vw,4.4rem);line-height:1.04;letter-spacing:-.065em;margin:12px 0 15px;font-weight:850}h1 span{display:block;background:var(--grad);background-clip:text;-webkit-background-clip:text;color:transparent}.intro{max-width:620px;color:#b3c5df;margin:0}.searchbox{position:relative;width:min(540px,100%);margin-top:25px}.searchbox svg{position:absolute;left:15px;top:14px;color:#9cb9df;pointer-events:none}.searchbox input{width:100%;height:48px;padding:0 15px 0 45px;color:var(--text);background:#12243be8;border:1px solid #31547e;border-radius:12px;outline:none}.searchbox input::placeholder{color:#8198b8}.searchbox input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #3b82f625}.filters{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}.filter{min-width:78px;padding:9px 17px;border:1px solid transparent;border-radius:10px;background:#132641;color:#b7c7dd;cursor:pointer;font-size:.9rem;font-weight:650}.filter:hover{border-color:#355b87;color:white}.filter.active{background:var(--grad);color:white;box-shadow:0 7px 20px #4a67f033}
+.heading{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:12px 0 16px}.heading h2,.grave-heading h2{margin:0;font-size:1.1rem}.count,.small-label{color:var(--muted);font-size:.82rem}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.project{position:relative;display:flex;align-items:flex-start;gap:17px;min-width:0;padding:21px 20px 22px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(130deg,#172a43f7,#0e1d30f7);text-decoration:none;overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s}.project:before{content:"";position:absolute;inset:0;opacity:0;background:linear-gradient(110deg,#3b82f615,#8b5cf61c);transition:opacity .2s;pointer-events:none}.project:hover,.project:focus-visible{transform:translateY(-4px);border-color:transparent;box-shadow:0 0 0 1px var(--blue),0 0 0 2px #8b5cf699,0 14px 38px #1f53b32e;outline:none}.project:hover:before{opacity:1}.project[hidden]{display:none}.project-icon{position:relative;z-index:1;flex:0 0 53px;width:53px;height:53px;display:grid;place-items:center;border-radius:15px;background:var(--grad);box-shadow:0 8px 18px #3b82f62b}.project-icon svg{width:26px;height:26px}.copy{position:relative;z-index:1;min-width:0;flex:1;padding:0 58px 0 0}.project h3{margin:1px 0 0;font-size:1.04rem;line-height:1.4;overflow-wrap:anywhere}.desc{margin:8px 0 0;color:#9fb3d0;font-size:.86rem;line-height:1.65}.status{position:absolute;right:17px;top:16px;z-index:2;padding:3px 10px;border-radius:8px;font-size:.75rem;font-weight:750;white-space:nowrap}.release{color:#b8ffdf;background:#10b98138}.beta{color:#d4e7ff;background:#3b82f647}.alpha{color:#ffe1a4;background:#f59e0b40}.arrow{position:absolute;right:17px;bottom:15px;color:#8fc0ff;width:20px;height:20px;transition:transform .2s}.project:hover .arrow{transform:translateX(4px)}
+.empty{display:none;text-align:center;padding:38px 20px;margin-top:8px;border:1px dashed #334b6b;border-radius:14px;color:var(--muted)}.empty.show{display:block}.graveyard{margin-top:36px}.grave-heading{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}.grave-heading .small-label{letter-spacing:.12em;color:#8193ab;font-size:.74rem}.grave-empty{padding:17px;border:1px solid #29394d;border-radius:13px;background:#141f2d99;color:#8494a9;font-size:.87rem}footer{width:min(1060px,calc(100% - 36px));margin:26px auto 0;padding:19px 0 28px;border-top:1px solid #3a537664;text-align:center;color:#7187a5;font-size:.77rem}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:720px){.nav{width:calc(100% - 28px);height:61px;gap:14px}.brand{font-size:1.28rem}.links{gap:0}.links a{padding:8px;font-size:.83rem}main,footer{width:calc(100% - 28px)}.hero{padding-top:47px}.grid{grid-template-columns:1fr;gap:12px}.project{padding:18px 16px 20px;gap:13px}.copy{padding-right:50px}.status{right:12px;top:13px}.arrow{right:13px;bottom:13px}}
+@media(max-width:420px){.nav{gap:8px}.links a{padding:7px;font-size:.78rem}.search-shortcut{width:37px;height:37px}.project-icon{flex-basis:45px;width:45px;height:45px;border-radius:13px}.project-icon svg{width:23px;height:23px}.project{gap:11px}.copy{padding-right:40px}.status{padding:3px 8px;font-size:.69rem}.desc{font-size:.81rem}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><nav class="nav" aria-label="주 메뉴">
+<a class="brand" href="#" aria-label="web hub 홈">web <span>hub</span></a>
+<div class="links"><a href="#projects">프로젝트</a><a href="#graveyard">묘지</a></div><div class="spacer"></div>
+<button class="search-shortcut" id="focusSearch" type="button" aria-label="검색으로 이동" title="검색"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.3 4.3"/></svg></button>
+</nav></header>
+<main>
+<section class="hero" aria-labelledby="page-title">
+<div class="eyebrow">Project library</div><h1 id="page-title">My projects.<span>One place.</span></h1>
+<p class="intro">내가 만든 프로젝트를 모아 보고, 원하는 사이트를 바로 실행하는 공간.</p>
+<div class="searchbox"><label class="sr-only" for="projectSearch">프로젝트명 검색</label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.3 4.3"/></svg><input id="projectSearch" type="search" placeholder="프로젝트명 검색..." autocomplete="off"></div>
+<div class="filters" role="group" aria-label="프로젝트 버전 필터">
+<button class="filter active" type="button" data-filter="all" aria-pressed="true">전체</button><button class="filter" type="button" data-filter="release" aria-pressed="false">정식</button><button class="filter" type="button" data-filter="beta" aria-pressed="false">베타</button><button class="filter" type="button" data-filter="alpha" aria-pressed="false">알파</button>
+</div></section>
+<section id="projects" aria-labelledby="projects-title"><div class="heading"><h2 id="projects-title">프로젝트</h2><span class="count" id="projectCount">4개 프로젝트</span></div>
+<div class="grid" id="projectGrid">
+<!-- 프로젝트를 추가하거나 수정할 때 href, data-name, data-status, 제목, 설명을 함께 수정하세요. -->
+<a class="project" href="https://yuni2013.github.io/button" target="_blank" rel="noopener noreferrer" data-name="버튼을 누르세요!" data-status="release">
+<span class="project-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></span><span class="copy"><h3>버튼을 누르세요!</h3><p class="desc">버튼을 눌러 즐기는 순발력 게임</p></span><span class="status release">정식</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a>
+<a class="project" href="https://yuni2013.github.io/yacht" target="_blank" rel="noopener noreferrer" data-name="yacht" data-status="release">
+<span class="project-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8" cy="8" r="1.15" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.15" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.15" fill="currentColor" stroke="none"/></svg></span><span class="copy"><h3>yacht</h3><p class="desc">주사위를 굴려 점수를 겨루는 게임</p></span><span class="status release">정식</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a>
+<a class="project" href="https://yuni2013.github.io/rogue" target="_blank" rel="noopener noreferrer" data-name="Rogue" data-status="release">
+<span class="project-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 6v5.5c0 4.5-3.1 7.7-8 9.5-4.9-1.8-8-5-8-9.5V6l8-3Z"/><path d="m8 15 8-8M8.5 7.5l8 8M7 17l-1.5 1.5M17 17l1.5 1.5"/><path d="M10 13l-2 2M14 11l2-2"/></svg></span><span class="copy"><h3>Rogue</h3><p class="desc">무작위로 생성된 던전을 탐험하는 게임</p></span><span class="status release">정식</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a>
+<a class="project" href="https://yuni2013.github.io/cardventure" target="_blank" rel="noopener noreferrer" data-name="Cardventure" data-status="alpha">
+<span class="project-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1 3.2a2.5 2.5 0 0 1-4.2 1.1L14 15h-4l-2.6 2.5a2.5 2.5 0 0 1-4.2-1.1l-1-3.2A4 4 0 0 1 6 8Z"/><path d="M7 11v4M5 13h4M16 12h.01M18 14h.01"/></svg></span><span class="copy"><h3>Cardventure</h3><p class="desc">카드를 조합해 모험을 떠나는 전략 카드 게임</p></span><span class="status alpha">알파</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a>
+</div><div class="empty" id="emptyState" role="status">검색 결과가 없습니다.</div></section>
+<section class="graveyard" id="graveyard" aria-labelledby="grave-title"><div class="grave-heading"><h2 id="grave-title">프로젝트 묘지</h2><span class="small-label">PROJECT GRAVEYARD</span></div><div class="grave-empty">아직 등록된 중단 프로젝트가 없습니다.</div></section>
+</main>
+<footer>© <span id="year"></span> web hub. All rights reserved.</footer>
+<script>
+(() => {
+  const search = document.getElementById('projectSearch');
+  const cards = [...document.querySelectorAll('.project')];
+  const buttons = [...document.querySelectorAll('.filter')];
+  const empty = document.getElementById('emptyState');
+  const count = document.getElementById('projectCount');
+  let filter = 'all';
+  function update() {
+    const query = search.value.trim().toLocaleLowerCase('ko');
+    let shown = 0;
+    cards.forEach(card => {
+      const nameMatch = card.dataset.name.toLocaleLowerCase('ko').includes(query);
+      const statusMatch = filter === 'all' || card.dataset.status === filter;
+      card.hidden = !(nameMatch && statusMatch);
+      if (!card.hidden) shown++;
+    });
+    empty.classList.toggle('show', shown === 0);
+    count.textContent = `${shown}개 프로젝트`;
+  }
+  buttons.forEach(button => button.addEventListener('click', () => {
+    filter = button.dataset.filter;
+    buttons.forEach(item => {
+      const active = item === button;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+    update();
+  }));
+  search.addEventListener('input', update);
+  document.getElementById('focusSearch').addEventListener('click', () => {
+    search.focus();
+    search.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+  update();
+})();
+</script>
+</body>
+</html>
